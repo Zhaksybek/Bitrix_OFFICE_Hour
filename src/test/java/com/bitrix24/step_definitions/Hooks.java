@@ -13,12 +13,14 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     private final static Logger logger = Logger.getLogger(Hooks.class);
+
     @Before
     public void setup() {
         logger.info("::: Starting automation :::");
         logger.info("Browser type: "+ ConfigurationReader.getProperty("browser"));
         logger.info("URL: "+ConfigurationReader.getProperty("url"));
     }
+
     @After
     public void tearDown(Scenario scenario){
         if (scenario.isFailed()){

@@ -6,6 +6,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.security.auth.login.Configuration;
+
 public class LoginPage extends BasePage {
     private final static Logger logger = Logger.getLogger(LoginPage.class);
 
@@ -20,8 +22,23 @@ public class LoginPage extends BasePage {
         String passwordString = ConfigurationReader.getProperty("password");
         email.sendKeys(usernameString);
         password.sendKeys(passwordString, Keys.ENTER);
-        //don't print password at work
-        logger.info("Login with "+usernameString+" username and "+passwordString+" password");
-//        System.out.println("Login with "+usernameString+" username and "+passwordString+" password");
+        logger.info("Login with " + usernameString + " username and " + passwordString + " password");
     }
+
+    /**
+     * This method used for login under specific role
+     *
+     * @param role like hr, helpdesk, marketing
+     */
+    public void login(String role) {
+        role = role.toLowerCase();
+        //email.hr=hr43@cybertekschool.com
+        String usernameString = ConfigurationReader.getProperty("email." + role);
+        String passwordString = ConfigurationReader.getProperty("password");
+        email.sendKeys(usernameString);
+        password.sendKeys(passwordString, Keys.ENTER);
+        logger.info("Logins as " + role);
+
+    }
+
 }

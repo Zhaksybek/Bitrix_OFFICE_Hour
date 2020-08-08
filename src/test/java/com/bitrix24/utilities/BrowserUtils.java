@@ -19,7 +19,7 @@ public class BrowserUtils {
     /*
     Applies thread sleep without having to throw interrupted exception
      */
-    public static void wait(int secs) {
+    public static void waitFor(int secs) {
         try {
             Thread.sleep(1000 * secs);
         } catch (InterruptedException e) {
